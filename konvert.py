@@ -18,33 +18,131 @@ List_note_text3 = QLabel('Конечная величина:')
 List_note = QListWidget()
 
 list_cut = QComboBox()
-list_cut.addItems(['Длина', 'Масса', 'Время', 'Скорость', 'Давление'])
-list_ishodnoe = QComboBox()
+list_cut.addItems(['Длина', 'Масса', 'Время', 'Давление'])
 
-list_initival_S=['Км', 'М', 'Дм', 'См', 'Мм']
-list_initival_m=['Т', 'Ц', 'Кг', 'Г', 'Мг']
-list_initival_t=['Неделя', 'Сутки', 'Час', 'Мин', 'Сек']
-# list_initival_v=['Т', 'Ц', 'Кг', 'Г', 'Мг']
+list_ishodnoe = QComboBox
 
-def pokazat():
-    if list_cut.count() == 0:
-        list_ishodnoe.deleteLater()
-        list_ishodnoe.addItems(list_initival_S)
-    # if list_cut.count() == 1:
-    else:
-        list_ishodnoe.deleteLater()
-        list_ishodnoe.addItems(list_initival_m)
+list_initival_S = QComboBox()
+list_initival_S.addItems(['Km', 'M', 'Sm'])
+
+list_initival_m = QComboBox()
+list_initival_m.addItems(['T', 'Kg', 'g'])
+
+list_initival_t = QComboBox()
+list_initival_t.addItems([ 'Сутки', 'Час', 'Мин', ])
+
+list_initival_v = QComboBox()
+list_initival_v.addItems(['Па', 'кПа', 'мПа'])
+
+#Длина
+
+def m(digit): #из км в м
+    m = digit*1000
+    return m
+
+def Sm(digit): #из км в см
+    sm = digit*1000000
+    return sm
+
+def smm(digit): #из см в м
+    smm = digit/100
+    return smm
+
+def Smk(digit): #из см в км
+    smk = digit/1000000
+    return smk
+
+def mk(digit): #из м в км
+    mk = digit/1000
+    return mk
+
+def mSm(digit): #из м в см
+    mSm = digit*100
+    return mSm
+
+#Масса
+
+def Kg(digit): #из т в кг
+    Kg = digit*1000
+    return Kg    
+
+def g(digit): #из т в г
+    g = digit*1000000
+    return g   
+
+def T(digit): #из кг в т
+    T = digit/1000
+    return T     
+
+def kgg(digit): #из кг в г
+    kgg = digit*1000
+    return kgg     
+
+def gt(digit): #из г в т
+    gt = digit/1000000
+    return gt    
+
+def gk(digit): #из г в кг
+    gk = digit/1000
+    return gk     
+
+#Время
+
+def dh(digit): # сутки в часы
+    dh = digit*24
+    return dh
+
+def m(digit): # сутки в минуты
+    m = digit*1440
+    return m
+
+def hd(digit): # часы в сутки
+    hd = digit/24
+    return hd
+
+def hm(digit): # часы в минуты
+    hm = digit*60
+    return hm
+
+def md(digit): # из минут в сутки
+    md = digit/1440
+    return md
+
+def mh(digit): # из минут в часы
+    mh = digit/60
+    return mh
+
+#Давление
+
+def kPa(digit): # паскали в кПа
+    kPa = dict/1000
+    return kPa
+
+def mPa(digit): # Па мПа
+    mPa = digit/1000000
+    return mPa
+
+def Pa(digit): # кПа в Па
+    Pa = digit*1000
+    return Pa
+
+def kmPa(digit): # кПа в мПа
+    kmPa = digit/1000
+    return kmPa
+
+def mkPa(digit): #мПа в кПа
+    mkPa = digit*1000
+    return mkPa
+
+def Pam(digit): # мПа в Па
+    Pam = digit*1000000
+    return Pam
 
 
-# list_initival_S = QComboBox()
-
-# list_initival_m = QComboBox()
-
-# list_initival_t = QComboBox()
-
-# list_initival_v = QComboBox()
 
 
+if list_cut.count() == 0:
+    list_ishodnoe.addItems(list_initival_S)
 
 
 
@@ -63,19 +161,15 @@ back = QPushButton('CE')
 dell = QPushButton('Delete')
 tran = QPushButton('Перевести')
 
-q1 = QHBoxLayout()
+q1 = QVBoxLayout()
 q2 = QHBoxLayout()
 q3 = QHBoxLayout()
-q1.addWidget(list_cut)
 q1.addWidget(list_ishodnoe)
+q1.addWidget(list_cut)
 q2.addWidget(tran)
 
-main_Layout = QVBoxLayout()
-main_Layout.addLayout(q1)
-main_Layout.addLayout(q2)
 
-MainWin.setLayout(main_Layout)
-
+mainWin.setLayout(q1)
 '''
 def show_note():
     name = List_note.selectedItems()[0].text()
@@ -146,8 +240,8 @@ def searchTag():
 
 
 
-tran.clicked.connect(pokazat)
 
+trun.clicked.connect
 
 MainWin.show()
 app.exec_()
