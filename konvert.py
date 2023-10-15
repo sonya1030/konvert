@@ -10,29 +10,37 @@ MainWin = QWidget()
 MainWin.setWindowTitle('Конвертер')
 MainWin.resize(900,700)
 Text = QTextEdit()
-List_note_text1 = QLabel('Категория:')
-List_note = QListWidget()
-List_note_text2 = QLabel('Исходная величина:')
-List_note = QListWidget()
-List_note_text3 = QLabel('Конечная величина:')
-List_note = QListWidget()
+text_Kategory = QLabel('Категория:')
+# List_note = QListWidget()
+text_ishodnoe = QLabel('Исходная величина:')
+# List_note = QListWidget()
+text_konechnaya = QLabel('Конечная величина:')
+# List_note = QListWidget()
 
 list_cut = QComboBox()
 list_cut.addItems(['Длина', 'Масса', 'Время', 'Давление'])
 
-list_ishodnoe = QComboBox
+list_ishodnoe = QComboBox()
+List_konechnaya = QComboBox()
 
-list_initival_S = QComboBox()
-list_initival_S.addItems(['Km', 'M', 'Sm'])
+d = ['Km', 'M', 'Sm']
+m = ['T', 'Kg', 'g']
+# [ 'Сутки', 'Час', 'Мин', ]
+# ['Па', 'кПа', 'мПа']
+def qq():
+    if list_cut.currentText() == 'Длина':
+        print(0)
+    if list_cut.currentText() == 'Масса':
+        print(1)
+        list_ishodnoe.setItemText('dfgh') #найти метод для устаовки списка
+        List_konechnaya.addItems(d)
 
-list_initival_m = QComboBox()
-list_initival_m.addItems(['T', 'Kg', 'g'])
 
-list_initival_t = QComboBox()
-list_initival_t.addItems([ 'Сутки', 'Час', 'Мин', ])
 
-list_initival_v = QComboBox()
-list_initival_v.addItems(['Па', 'кПа', 'мПа'])
+
+
+# list_initival_v = QComboBox()
+# list_initival_v.addItems(список)
 
 #Длина
 
@@ -141,8 +149,8 @@ def Pam(digit): # мПа в Па
 
 
 
-if list_cut.count() == 0:
-    list_ishodnoe.addItems(list_initival_S)
+# if list_cut.count() == 0:
+#     list_ishodnoe.addItems(list_initival_S)
 
 
 
@@ -164,12 +172,22 @@ tran = QPushButton('Перевести')
 q1 = QVBoxLayout()
 q2 = QHBoxLayout()
 q3 = QHBoxLayout()
-q1.addWidget(list_ishodnoe)
+q4 = QHBoxLayout()
+q1.addWidget(text_Kategory)
 q1.addWidget(list_cut)
-q2.addWidget(tran)
+q1.addWidget(text_ishodnoe)
+q1.addWidget(list_ishodnoe)
+
+q1.addWidget(text_konechnaya)
+
+q1.addWidget(List_konechnaya)
+# q1.addWidget(List_Kategory)
+q1.addWidget(tran)
 
 
-mainWin.setLayout(q1)
+MainWin.setLayout(q1)
+MainWin.setLayout(q2)
+MainWin.setLayout(q3)
 '''
 def show_note():
     name = List_note.selectedItems()[0].text()
@@ -238,6 +256,13 @@ def searchTag():
         search_tag.setText('Искать заметки по тегу')
 '''
 
+
+
+
+tran.clicked.connect(qq)
+
+MainWin.show()
+app.exec_()
 
 
 
