@@ -17,33 +17,40 @@ text_ishodnoe = QLabel('Исходная величина:')
 text_konechnaya = QLabel('Конечная величина:')
 # List_note = QListWidget()
 
+digit_text = QTextEdit()
+
 list_cut = QComboBox()
 list_cut.addItems(['Длина', 'Масса', 'Время', 'Давление'])
 
 list_ishodnoe = QComboBox()
 List_konechnaya = QComboBox()
 
-d = ['Km', 'M', 'Sm']
-m = ['T', 'Kg', 'g']
-# [ 'Сутки', 'Час', 'Мин', ]
-# ['Па', 'кПа', 'мПа']
+d = ['Километр ', 'Mетр', 'Сантиметр']
+mm = ['Tонна', 'Kилограмм', 'грамм']
+t = [ 'Сутки', 'Час', 'Минута', ]
+p =  ['Па', 'кПа', 'мПа']
 def qq():
     if list_cut.currentText() == 'Длина':
-        print(0)
-    if list_cut.currentText() == 'Масса':
-        print(1)
-        list_ishodnoe.setItemText('dfgh') #найти метод для устаовки списка
+        list_ishodnoe.clear()
+        list_ishodnoe.addItems(d)
+        List_konechnaya.clear()
         List_konechnaya.addItems(d)
-
-
-
-
-
-# list_initival_v = QComboBox()
-# list_initival_v.addItems(список)
-
+    if list_cut.currentText() == 'Масса':
+        list_ishodnoe.clear()
+        list_ishodnoe.addItems(mm)
+        List_konechnaya.clear()
+        List_konechnaya.addItems(mm)
+    if list_cut.currentText() == 'Время':
+        list_ishodnoe.clear()
+        list_ishodnoe.addItems(t)
+        List_konechnaya.clear()
+        List_konechnaya.addItems(t)
+    if list_cut.currentText() == 'Давление':
+        list_ishodnoe.clear()
+        list_ishodnoe.addItems(p)
+        List_konechnaya.clear()
+        List_konechnaya.addItems(p)
 #Длина
-
 def m(digit): #из км в м
     m = digit*1000
     return m
@@ -163,31 +170,55 @@ btn_5 = QPushButton('5')
 btn_6 = QPushButton('6')
 btn_7 = QPushButton('7')
 btn_8 = QPushButton('8')
-btn_8 = QPushButton('9')
+btn_9 = QPushButton('9')
 comm = QPushButton(',')
 back = QPushButton('CE')
 dell = QPushButton('Delete')
+
 tran = QPushButton('Перевести')
 
 q1 = QVBoxLayout()
-q2 = QHBoxLayout()
-q3 = QHBoxLayout()
-q4 = QHBoxLayout()
 q1.addWidget(text_Kategory)
 q1.addWidget(list_cut)
 q1.addWidget(text_ishodnoe)
 q1.addWidget(list_ishodnoe)
-
 q1.addWidget(text_konechnaya)
-
 q1.addWidget(List_konechnaya)
-# q1.addWidget(List_Kategory)
 q1.addWidget(tran)
 
+q2 = QVBoxLayout()
+q2.addWidget(digit_text)
+digit_line0 = QHBoxLayout()
+digit_line1 = QHBoxLayout()
+digit_line2 = QHBoxLayout()
+digit_line3 = QHBoxLayout()
+digit_line4 = QHBoxLayout()
 
-MainWin.setLayout(q1)
-MainWin.setLayout(q2)
-MainWin.setLayout(q3)
+digit_line0.addWidget(btn_0)
+digit_line0.addWidget(comm)
+digit_line1.addWidget(btn_7)
+digit_line1.addWidget(btn_8)
+digit_line1.addWidget(btn_9)
+digit_line2.addWidget(btn_4)
+digit_line2.addWidget(btn_5)
+digit_line2.addWidget(btn_6)
+digit_line3.addWidget(btn_1)
+digit_line3.addWidget(btn_2)
+digit_line3.addWidget(btn_3)
+digit_line4.addWidget(back)
+digit_line4.addWidget(dell)
+
+q2.addLayout(digit_line4) 
+q2.addLayout(digit_line3)
+q2.addLayout(digit_line2) 
+q2.addLayout(digit_line1) 
+q2.addLayout(digit_line0) 
+
+q_main = QHBoxLayout()
+q_main.addLayout(q1)
+q_main.addLayout(q2)
+
+MainWin.setLayout(q_main)
 '''
 def show_note():
     name = List_note.selectedItems()[0].text()
@@ -260,13 +291,6 @@ def searchTag():
 
 
 tran.clicked.connect(qq)
-
-MainWin.show()
-app.exec_()
-
-
-
-trun.clicked.connect
 
 MainWin.show()
 app.exec_()
