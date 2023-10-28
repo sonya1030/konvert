@@ -230,12 +230,12 @@ def mh(digit): # из минут в часы
 
 #Давление
 
-def kPa(digit): # паскали в кПа
-    kPa = dict/1000
-    return kPa
-def mPa(digit): # Па мПа
-    mPa = digit/1000000
-    return mPa
+def ka(digit): # паскали в кПа
+    ka = digit/1000
+    return ka
+def ma(digit): # Па мПа
+    ma = digit/1000000
+    return ma
 def Pa(digit): # кПа в Па
     Pa = digit*1000
     return Pa
@@ -333,12 +333,11 @@ def dalhe(digit):
 
 # ========================================================    
     elif list_ishodnoe.currentText() == 'Па':
-        print("зашли в ПА")
         if List_konechnaya.currentText() == 'кПа':
-            z = kPa(digit)
+            z = ka(digit)
             return z
         elif List_konechnaya.currentText() == 'мПа':
-            z = mPa(digit)
+            z = ma(digit)
             return z
     elif list_ishodnoe.currentText() == 'кПа':
         if List_konechnaya.currentText() == 'Па':
@@ -358,14 +357,12 @@ def dalhe(digit):
 def go():
     global text
     try:
-        print(0)
+        
         digit = float(text)
-        print(1)
         c = dalhe(digit)
-        print(2)
         digit_text.setText(str(c))
     except:
-        digit_text.setText('Не число введено')
+        digit_text.setText('Введено не число, чтобы воспользоваться программой - введите число')
 
 tran.clicked.connect(go)
 
